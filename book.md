@@ -2251,10 +2251,10 @@ gbk.fetch('http://www.taobao.com/','utf-8').to('string', function (err, body) {
 
 本章的内容主要讲解了关键的实现部分，对于一些相关的模块的详细使用方法，读者可以
 自行访问该模块的主页来获取。要获取本章实例的完整代码可以访问以下网址获得：
-https://github.com/leizongmin/book-crawler-mysql-cron
+https://github.com/lenovointer/crawler
 
 读者在阅读本章内容时遇到相关的问题，可以通过以下网址来提交：
-https://github.com/leizongmin/book-crawler-mysql-cron/issues
+https://github.com/lenovointer/crawler/issues
 
 --------------------------------------------------------------------------------
 
