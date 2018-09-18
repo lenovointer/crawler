@@ -1812,7 +1812,6 @@ var path = require('path');
 var express = require('express');
 var read = require('./web/read');
 var config = require('./config');
-
 var app = express();
 
 // 配置 express

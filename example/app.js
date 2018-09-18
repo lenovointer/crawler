@@ -4,6 +4,11 @@ var spawn = require('child_process').spawn;
 var cronJob = require('cron').CronJob;
 var read = require('./web/read');
 var config = require('./config');
+var cheerio = require('cheerio');
+var debug = require('debug')('blog:all');
+
+
+
 
 var app = express();
 
@@ -33,6 +38,13 @@ app.get('/article/:id', function (req, res, next) {
   read.article(req.params.id, function (err, article) {
     if (err) return next(err);
 
+    // 处理懒加载图片
+    var $ = cheerio.load(article.content.toString());
+    $('img').each(function () {
+      var $me = $(this);
+      $me.attr('src', $me.attr('real_src'));
+    });
+    article.content = $.html();
     // 渲染模板
     res.locals.article = article;
     res.render('article');
