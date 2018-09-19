@@ -19,15 +19,22 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 
 
 // 网站首页
-app.get('/', function(req, res, next){
+app.get('/:id', function(req, res, next){
   // articleListByClassId 的第一个参数是文章分类的 ID
   // 第二个参数是返回结果的开始位置
   // 第三个参数是返回结果的数量
-  read.articleListByClassId(0, 0, 20, function (err, list) {
+  let offset = req.params.id ? req.params.id*1 : 0;
+  read.articleListByClassId(0, offset, 20, function (err, list) {
     if (err) return next(err);
-
+    let resData = {};
+    resData.articleList = list;
+    if(list.length<20){
+      resData.offset = 0;
+    }else{
+      resData.offset = offset;
+    }
     // 渲染模板
-    res.locals.articleList = list;
+    res.locals.resData = resData;
     res.render('index');
   });
 });

@@ -1,6 +1,7 @@
 <h1>我的博客首页</h1>
 <ul>
-<% articleList.forEach(function (article) { %>
+<% resData.articleList.forEach(function (article) { %>
   <li><a href="/article/<%= article.id %>"><%= article.title %></a></li>
 <% }) %>
+  <a href="<%= resData.offset+20 %>">下一页</a>
 </ul>
